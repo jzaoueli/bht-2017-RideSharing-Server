@@ -1,14 +1,6 @@
--- Rename this file to V0001__R001_Create_schema_MYSQL.sql.mysql if the database used is not MariaDB 10.0.27
-
--- This is the SQL script for setting up the DDL for the h2 database
--- In a typical project you would only distinguish between main and test for flyway SQLs
--- However, in this sample application we provde support for multiple databases in parallel
--- You can simply choose the DB of your choice by setting spring.profiles.active=XXX in config/application.properties
--- Assuming that the preconfigured user exists with according credentials using the included SQLs
-
 USE RIDESHARING;
 
-SET FOREIGN_KEY_CHECKS = 0;   -- This is to temporarily break the Foreign Key Constraint. It is sometimes necessary to change data in a way -- that referential integrity needs to be broken during the modification process.
+--SET FOREIGN_KEY_CHECKS = 0;   -- This is to temporarily break the Foreign Key Constraint. It is sometimes necessary to change data in a way -- that referential integrity needs to be broken during the modification process.
 
 -- *** User Profile***
 CREATE TABLE USERPROFILE(
@@ -60,4 +52,4 @@ CREATE TABLE REQUEST(
     RSOfferIDMapped INT references OFFER(ID)
 );
 
-SET FOREIGN_KEY_CHECKS = 1;
+--SET FOREIGN_KEY_CHECKS = 1;
