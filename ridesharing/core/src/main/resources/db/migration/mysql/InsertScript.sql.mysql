@@ -5,13 +5,13 @@ INSERT INTO USERPROFILE (UserID, Name, EmailAddress, MobileNumber, CGHomeLocatio
 INSERT INTO USERPROFILE (UserID, Name, EmailAddress, MobileNumber, CGHomeLocation, ValidationStatus) VALUES (104, 'user4', 'mo4@mo.de', '15315326266', 'Morits platz 10243 Berlin', true);
 
 
-INSERT INTO TRANSPORTPOINT (ID ,Name ,CGLocation ,Country ,City ,LocationAddress, GPSCoordination) VALUES (1, "Berlin Niederlassung", true, 'City1', 'Potsdamer platz 10243 Berlin', '52.5457966,13.5066605');
-INSERT INTO TRANSPORTPOINT (ID ,Name ,CGLocation ,Country ,City ,LocationAddress, GPSCoordination) VALUES (2, "Hannover Niederlassung", true, 'City2', 'Potsdamer platz 10243 Berlin', '52.5457966,13.5066605');
-INSERT INTO TRANSPORTPOINT (ID ,Name ,CGLocation ,Country ,City ,LocationAddress, GPSCoordination) VALUES (3, "Frankfurt Niederlassung", true, 'City3', 'Potsdamer platz 10243 Berlin', '52.5457966,13.5066605');
-INSERT INTO TRANSPORTPOINT (ID ,Name ,CGLocation ,Country ,City ,LocationAddress, GPSCoordination) VALUES (4, "D�sseldorf Niederlassung", true, 'City4', 'Potsdamer platz 10243 Berlin', '52.5457966,13.5066605');
-INSERT INTO TRANSPORTPOINT (ID ,Name ,CGLocation ,Country ,City ,LocationAddress, GPSCoordination) VALUES (5, "Stuttgart Niederlassung", true, 'City5', 'Potsdamer platz 10243 Berlin', '52.5457966,13.5066605');
-INSERT INTO TRANSPORTPOINT (ID ,Name ,CGLocation ,Country ,City ,LocationAddress, GPSCoordination) VALUES (6, "M�nchen Niederlassung", true, 'City6', 'Potsdamer platz 10243 Berlin', '52.5457966,13.5066605');
-INSERT INTO TRANSPORTPOINT (ID ,Name ,CGLocation ,Country ,City ,LocationAddress, GPSCoordination) VALUES (7, "Berlin Flughafen", false, 'City6', 'Potsdamer platz 10243 Berlin', '52.5457966,13.5066605');
+INSERT INTO TRANSPORTPOINT (ID ,Name ,CGLocation ,Country ,City ,LocationAddress, GPSCoordination) VALUES (1, "Berlin Niederlassung", true, 'City1', 'Germany', 'Potsdamer platz 10243 Berlin', '52.5457966,13.5066605');
+INSERT INTO TRANSPORTPOINT (ID ,Name ,CGLocation ,Country ,City ,LocationAddress, GPSCoordination) VALUES (2, "Hannover Niederlassung", true, 'City2', 'Germany', 'Potsdamer platz 10243 Berlin', '52.5457966,13.5066605');
+INSERT INTO TRANSPORTPOINT (ID ,Name ,CGLocation ,Country ,City ,LocationAddress, GPSCoordination) VALUES (3, "Frankfurt Niederlassung", true, 'City3', 'Germany', 'Potsdamer platz 10243 Berlin', '52.5457966,13.5066605');
+INSERT INTO TRANSPORTPOINT (ID ,Name ,CGLocation ,Country ,City ,LocationAddress, GPSCoordination) VALUES (4, "Duesseldorf Niederlassung", true, 'City4', 'Germany', 'Potsdamer platz 10243 Berlin', '52.5457966,13.5066605');
+INSERT INTO TRANSPORTPOINT (ID ,Name ,CGLocation ,Country ,City ,LocationAddress, GPSCoordination) VALUES (5, "Stuttgart Niederlassung", true, 'City5', 'Germany', 'Potsdamer platz 10243 Berlin', '52.5457966,13.5066605');
+INSERT INTO TRANSPORTPOINT (ID ,Name ,CGLocation ,Country ,City ,LocationAddress, GPSCoordination) VALUES (6, "Muenchen Niederlassung", true, 'City6', 'Germany', 'Potsdamer platz 10243 Berlin', '52.5457966,13.5066605');
+INSERT INTO TRANSPORTPOINT (ID ,Name ,CGLocation ,Country ,City ,LocationAddress, GPSCoordination) VALUES (7, "Berlin Flughafen", false, 'City6', 'Germany', 'Potsdamer platz 10243 Berlin', '52.5457966,13.5066605');
 
 
 
