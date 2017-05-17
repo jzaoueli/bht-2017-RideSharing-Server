@@ -6,6 +6,8 @@ import io.oasp.logistic.ridesharing.requestmanagement.common.api.Request;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
 @Entity
@@ -91,11 +93,13 @@ public class RequestEntity extends ApplicationPersistenceEntity implements Reque
     }
 
     @Override
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getEarliestDepartureTime() {
         return this.earliestDepartureTime;
     }
 
     @Override
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getLatestDepartureTime() {
         return this.latestDepartureTime;
     }
