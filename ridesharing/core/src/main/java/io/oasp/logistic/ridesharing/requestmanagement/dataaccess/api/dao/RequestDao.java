@@ -6,6 +6,8 @@ import io.oasp.logistic.ridesharing.requestmanagement.logic.api.to.RequestSearch
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
 import io.oasp.module.jpa.dataaccess.api.MasterDataDao;
 
+import java.util.List;
+
 /**
  * {@link ApplicationDao Data Access Object} for {@link RequestEntity} entity.
  */
@@ -18,4 +20,6 @@ public interface RequestDao extends ApplicationDao<RequestEntity>, MasterDataDao
      * @return the {@link PaginatedListTo} with the matching {@link RequestEntity} objects.
      */
     PaginatedListTo<RequestEntity> findRequests(RequestSearchCriteriaTo criteria);
+
+    List<RequestEntity> getNotMappedRequests();
 }

@@ -4,7 +4,7 @@ package io.oasp.logistic.ridesharing.requestmanagement.dataaccess.impl.dao;
 import com.mysema.query.alias.Alias;
 import com.mysema.query.jpa.impl.JPAQuery;
 import com.mysema.query.types.path.EntityPathBase;
-import io.oasp.logistic.ridesharing.general.dataaccess.base.DatabaseMigrator;
+import io.oasp.logistic.ridesharing.general.common.api.constants.NamedQueries;
 import io.oasp.logistic.ridesharing.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
 import io.oasp.logistic.ridesharing.requestmanagement.dataaccess.api.RequestEntity;
 import io.oasp.logistic.ridesharing.requestmanagement.dataaccess.api.dao.RequestDao;
@@ -12,6 +12,7 @@ import io.oasp.logistic.ridesharing.requestmanagement.logic.api.to.RequestSearch
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
 
 import javax.inject.Named;
+import javax.persistence.Query;
 import java.util.Date;
 import java.util.List;
 
@@ -69,4 +70,11 @@ public class RequestDaoImpl extends ApplicationMasterDataDaoImpl<RequestEntity> 
 
         return findPaginated(criteria, query, alias);
     }
+
+    @Override
+    public List<RequestEntity> getNotMappedRequests() {
+        Query query = getEntityManager().createNamedQuery(NamedQueries.GET_NOT_MAPPED_REQUESTS, RequestEntity.class);
+        return query.getResultList();
+    }
+
 }
