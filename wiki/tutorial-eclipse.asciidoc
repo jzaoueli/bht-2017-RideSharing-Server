@@ -1,3 +1,0 @@
-= Working with eclipse
-
-TODO: highlight how to edit code from eclipse, run the server, etc...

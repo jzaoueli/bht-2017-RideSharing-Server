@@ -1,3 +1,0 @@
-= Using Business components
-
-Describe how to access other business components and how to deal with entities shared between components

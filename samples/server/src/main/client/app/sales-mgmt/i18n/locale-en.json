@@ -1,8 +1,0 @@
-{
-    "SALES_MGMT": {
-        "AVAILABLE": "Available",
-        "ASSIGNED": "Assigned",
-        "REJECT": "Reject",
-        "DONE": "Done"
-    }
-}
