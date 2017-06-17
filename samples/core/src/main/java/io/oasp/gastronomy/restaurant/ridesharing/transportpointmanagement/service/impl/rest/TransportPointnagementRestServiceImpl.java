@@ -38,9 +38,9 @@ public class TransportPointnagementRestServiceImpl implements TransportPointmana
 
   @Override
   @Deprecated
-  public TransportPointEto createTransportPoint(TransportPointEto transportPointEto) {
+  public void updateTransportPoint(TransportPointEto transportPointEto) {
 
-    return this.transportPointManagement.saveTransportPoint(transportPointEto);
+    this.transportPointManagement.saveTransportPoint(transportPointEto);
   }
 
   @Override
