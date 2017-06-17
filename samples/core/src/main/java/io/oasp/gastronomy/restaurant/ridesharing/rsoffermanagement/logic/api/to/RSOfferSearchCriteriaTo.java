@@ -12,6 +12,14 @@ public class RSOfferSearchCriteriaTo extends SearchCriteriaTo{
     private Request request;
 
     /**
+     * The constructor.
+     */
+    public RSOfferSearchCriteriaTo() {
+
+        super();
+    }
+
+    /**
      * @return request
      */
     public Request getRequest() {
