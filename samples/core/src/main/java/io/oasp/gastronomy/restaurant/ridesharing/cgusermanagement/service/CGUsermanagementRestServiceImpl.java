@@ -36,9 +36,9 @@ public class CGUsermanagementRestServiceImpl implements CGUsermanagementRestServ
 
   @Override
   @Deprecated
-  public CGMemberEto createMember(CGMemberEto cgMemberEto) {
+  public void updateMember(CGMemberEto cgMemberEto) {
 
-    return this.cgmanagement.saveMember(cgMemberEto);
+    this.cgmanagement.saveMember(cgMemberEto);
   }
 
   @Override
