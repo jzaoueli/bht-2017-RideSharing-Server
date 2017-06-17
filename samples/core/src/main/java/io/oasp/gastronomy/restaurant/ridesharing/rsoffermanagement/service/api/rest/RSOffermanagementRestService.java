@@ -21,7 +21,7 @@ import io.oasp.gastronomy.restaurant.ridesharing.rsoffermanagement.logic.api.to.
  * The service class for REST calls in order to execute the methods in {@link RSOffermanagement}.
  *
  */
-@Path("/rsoffermanagement")
+@Path("/rsoffer")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public interface RSOffermanagementRestService extends RestService {

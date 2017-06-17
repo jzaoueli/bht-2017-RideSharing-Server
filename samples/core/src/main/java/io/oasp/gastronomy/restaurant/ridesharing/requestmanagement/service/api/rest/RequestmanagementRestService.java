@@ -21,7 +21,7 @@ import io.oasp.gastronomy.restaurant.ridesharing.requestmanagement.logic.api.to.
  * The service class for REST calls in order to execute the methods in {@link Requestmanagement}.
  *
  */
-@Path("/requestmanagement")
+@Path("/request")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public interface RequestmanagementRestService extends RestService {
