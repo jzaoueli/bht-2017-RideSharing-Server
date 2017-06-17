@@ -89,19 +89,19 @@ public class RequestmanagementImpl extends AbstractComponentFacade implements Re
     List<RSOfferEntity> matchedRSOffers = matchedRSOffersPaginatedList.getResult();
 
     if (!matchedRSOffers.isEmpty()) {
-      LOG.debug("found matched rsOffer: " + matchedRSOffers.size());
+      LOG.warn("found matched rsOffer: " + matchedRSOffers.size());
       for (RSOffer rsOffer : matchedRSOffers) {
         RSOfferEto rsofferEto = getBeanMapper().map(rsOffer, RSOfferEto.class);
-        LOG.debug("found matched rsOffer from user : " + rsOffer.getUserId());
-        LOG.debug("found matched rsOffer with id : " + rsofferEto.getId());
+        LOG.warn("found matched rsOffer from user : " + rsOffer.getUserId());
+        LOG.warn("found matched rsOffer with id : " + rsofferEto.getId());
       }
     } else {
-      LOG.debug("no matched request found");
+      LOG.warn("no matched request found");
     }
 
-    LOG.debug("saved offer from : " + requestEto.getFromLocation());
-    LOG.debug("saved offer from : " + requestEto.getFromLocation());
-    LOG.debug("saved offer between : " + requestEto.getEarliestDepartureTime() + "and "
+    LOG.warn("saved offer from : " + requestEto.getFromLocation());
+    LOG.warn("saved offer from : " + requestEto.getFromLocation());
+    LOG.warn("saved offer between : " + requestEto.getEarliestDepartureTime() + "and "
         + requestEto.getLatestDepartureTime());
     return requestEto;
   }

@@ -87,15 +87,15 @@ public class RSOffermanagementImpl extends AbstractComponentFacade implements RS
 
     if (!matchedRequests.isEmpty()) {
       // TODO: update offer.numberOFPlaces and request.rsofferIdMapped
-      LOG.debug("found matched requests: " + matchedRequests.size());
+      LOG.warn("found matched requests: " + matchedRequests.size());
       for (RequestEntity requestEntity : matchedRequests) {
-        LOG.debug("found matched request from user : " + requestEntity.getUserId());
+        LOG.warn("found matched request from user : " + requestEntity.getUserId());
       }
     } else {
-      LOG.debug("no matched request found");
+      LOG.warn("no matched request found");
     }
 
-    LOG.debug("saved offer with departure: " + rsOfferEto.getDepartureTime());
+    LOG.warn("saved offer with departure: " + rsOfferEto.getDepartureTime());
     return rsOfferEto;
   }
 
