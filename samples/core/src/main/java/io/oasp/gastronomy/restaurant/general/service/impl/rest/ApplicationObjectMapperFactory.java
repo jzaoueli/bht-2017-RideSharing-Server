@@ -1,11 +1,6 @@
 package io.oasp.gastronomy.restaurant.general.service.impl.rest;
 
 // BEGIN ARCHETYPE SKIP
-import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
-import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.DrinkEto;
-import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.MealEto;
-import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductEto;
-import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto;
 // END ARCHETYPE SKIP
 import io.oasp.module.rest.service.impl.json.ObjectMapperFactory;
 
@@ -27,6 +22,7 @@ public class ApplicationObjectMapperFactory extends ObjectMapperFactory {
   public ApplicationObjectMapperFactory() {
 
     super();
+    /*
     // register polymorphic base classes
     // BEGIN ARCHETYPE SKIP
     setBaseClasses(ProductEto.class);
@@ -45,5 +41,6 @@ public class ApplicationObjectMapperFactory extends ObjectMapperFactory {
     module.addDeserializer(Money.class, new MoneyJsonDeserializer());
     module.addSerializer(Money.class, new MoneyJsonSerializer());
     // END ARCHETYPE SKIP
+    */
   }
 }

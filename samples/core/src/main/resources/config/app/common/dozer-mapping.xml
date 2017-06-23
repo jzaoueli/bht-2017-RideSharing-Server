@@ -8,9 +8,9 @@
     <stop-on-errors>true</stop-on-errors>
 
     <copy-by-references>
-      <!-- BEGIN ARCHETYPE SKIP -->
+      <!-- BEGIN ARCHETYPE SKIP
       <copy-by-reference>io.oasp.gastronomy.restaurant.general.common.api.datatype.Money</copy-by-reference>
-      <!-- END ARCHETYPE SKIP -->
+       END ARCHETYPE SKIP -->
       <copy-by-reference>java.lang.Long</copy-by-reference>
       <copy-by-reference>java.lang.Integer</copy-by-reference>
       <copy-by-reference>java.lang.Number</copy-by-reference>
@@ -21,21 +21,6 @@
     </copy-by-references>
   </configuration>
 
-  <!-- BEGIN ARCHETYPE SKIP -->
-  <!-- Should actually happen via JavaCode instead of XML but we are going to replace dozer anyway... -->
-  <mapping>
-    <class-a>io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.DrinkEto</class-a>
-    <class-b>io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.DrinkEntity</class-b>
-  </mapping>
-  <mapping>
-    <class-a>io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.MealEto</class-a>
-    <class-b>io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.MealEntity</class-b>
-  </mapping>
-  <mapping>
-    <class-a>io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto</class-a>
-    <class-b>io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.SideDishEntity</class-b>
-  </mapping>
-  <!-- END ARCHETYPE SKIP -->
 
   <!-- If a persistence entity is converted to an ETO then the original entity is stored as hidden reference.
        The modificationCounter of a persistence entity is updated by the JPA provider (hibernate) after the transaction

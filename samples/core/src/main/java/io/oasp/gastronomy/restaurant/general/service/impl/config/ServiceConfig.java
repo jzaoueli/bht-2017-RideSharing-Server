@@ -8,6 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.ext.Provider;
 import javax.xml.ws.Endpoint;
 
+import io.oasp.gastronomy.restaurant.ridesharing.rsoffermanagement.service.impl.rest.RSOffermanagementRestServiceImpl;
 import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
@@ -27,7 +28,6 @@ import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 // BEGIN ARCHETYPE SKIP
-import io.oasp.gastronomy.restaurant.tablemanagement.service.impl.ws.v1_0.TablemanagementWebServiceImpl;
 // END ARCHETYPE SKIP
 import io.oasp.module.rest.service.impl.RestServiceExceptionFacade;
 import io.oasp.module.rest.service.impl.json.ObjectMapperFactory;
@@ -126,8 +126,8 @@ public class ServiceConfig extends WsConfigurerAdapter {
   public Endpoint tableManagement() {
 
     // Bus bus = (Bus) this.applicationContext.getBean(Bus.DEFAULT_BUS_ID);
-    EndpointImpl endpoint = new EndpointImpl(springBus(), new TablemanagementWebServiceImpl());
-    endpoint.publish("/TablemanagementWebService");
+    EndpointImpl endpoint = new EndpointImpl(springBus(), new RSOffermanagementRestServiceImpl());
+    endpoint.publish("/RSOffermanagementWebService");
     return endpoint;
   }
   // END ARCHETYPE SKIP
