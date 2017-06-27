@@ -8,7 +8,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.ext.Provider;
 import javax.xml.ws.Endpoint;
 
+import io.oasp.gastronomy.restaurant.ridesharing.cgusermanagement.service.CGUsermanagementRestServiceImpl;
+import io.oasp.gastronomy.restaurant.ridesharing.requestmanagement.service.impl.rest.RequestmanagementRestServiceImpl;
 import io.oasp.gastronomy.restaurant.ridesharing.rsoffermanagement.service.impl.rest.RSOffermanagementRestServiceImpl;
+import io.oasp.gastronomy.restaurant.ridesharing.transportpointmanagement.service.impl.rest.TransportPointnagementRestServiceImpl;
 import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
@@ -123,11 +126,35 @@ public class ServiceConfig extends WsConfigurerAdapter {
 
   // BEGIN ARCHETYPE SKIP
   @Bean
-  public Endpoint tableManagement() {
+  public Endpoint rsOfferManagement() {
 
     // Bus bus = (Bus) this.applicationContext.getBean(Bus.DEFAULT_BUS_ID);
     EndpointImpl endpoint = new EndpointImpl(springBus(), new RSOffermanagementRestServiceImpl());
     endpoint.publish("/RSOffermanagementWebService");
+    return endpoint;
+  }
+
+  @Bean
+  public Endpoint requesManagement() {
+
+    EndpointImpl endpoint = new EndpointImpl(springBus(), new RequestmanagementRestServiceImpl());
+    endpoint.publish("/RequestmanagementWebService");
+    return endpoint;
+  }
+
+  @Bean
+  public Endpoint cgUserManagement() {
+
+    EndpointImpl endpoint = new EndpointImpl(springBus(), new CGUsermanagementRestServiceImpl());
+    endpoint.publish("/CGUsermanagementWebService");
+    return endpoint;
+  }
+
+  @Bean
+  public Endpoint transportPointManagement() {
+
+    EndpointImpl endpoint = new EndpointImpl(springBus(), new TransportPointnagementRestServiceImpl());
+    endpoint.publish("/TransportPointmanagementWebService");
     return endpoint;
   }
   // END ARCHETYPE SKIP
