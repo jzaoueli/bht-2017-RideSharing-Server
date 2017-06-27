@@ -73,9 +73,9 @@ public class RequestEto extends AbstractEto implements Request {
   }
 
   @Override
-  public void setRSOfferIdMapped(long rOfferIdMapped) {
+  public void setRSOfferIdMapped(long rsOfferIdMapped) {
 
-    this.rsOfferIdMapped = this.rsOfferIdMapped;
+    this.rsOfferIdMapped = rsOfferIdMapped;
   }
 
   @Override
