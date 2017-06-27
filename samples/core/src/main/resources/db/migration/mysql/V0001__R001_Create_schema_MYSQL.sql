@@ -6,7 +6,7 @@
 -- You can simply choose the DB of your choice by setting spring.profiles.active=XXX in config/application.properties
 -- Assuming that the preconfigured user exists with according credentials using the included SQLs
 
-USE restaurant;
+USE ridesharing;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
