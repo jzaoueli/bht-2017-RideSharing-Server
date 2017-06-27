@@ -11,7 +11,7 @@ import javax.xml.ws.Endpoint;
 import io.oasp.gastronomy.restaurant.ridesharing.cgusermanagement.service.CGUsermanagementRestServiceImpl;
 import io.oasp.gastronomy.restaurant.ridesharing.requestmanagement.service.impl.rest.RequestmanagementRestServiceImpl;
 import io.oasp.gastronomy.restaurant.ridesharing.rsoffermanagement.service.impl.rest.RSOffermanagementRestServiceImpl;
-import io.oasp.gastronomy.restaurant.ridesharing.transportpointmanagement.service.impl.rest.TransportPointnagementRestServiceImpl;
+import io.oasp.gastronomy.restaurant.ridesharing.transportpointmanagement.service.impl.rest.TransportPointmanagementRestServiceImpl;
 import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
@@ -153,7 +153,7 @@ public class ServiceConfig extends WsConfigurerAdapter {
   @Bean
   public Endpoint transportPointManagement() {
 
-    EndpointImpl endpoint = new EndpointImpl(springBus(), new TransportPointnagementRestServiceImpl());
+    EndpointImpl endpoint = new EndpointImpl(springBus(), new TransportPointmanagementRestServiceImpl());
     endpoint.publish("/TransportPointmanagementWebService");
     return endpoint;
   }

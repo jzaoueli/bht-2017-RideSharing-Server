@@ -12,7 +12,7 @@ import io.oasp.gastronomy.restaurant.ridesharing.transportpointmanagement.servic
 /**
  */
 @Named("TransportPointmanagementRestService")
-public class TransportPointnagementRestServiceImpl implements TransportPointmanagementRestService {
+public class TransportPointmanagementRestServiceImpl implements TransportPointmanagementRestService {
 
   private TransportPointmanagement transportPointManagement;
 
