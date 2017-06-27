@@ -48,7 +48,9 @@ public class RSOfferDaoImpl extends ApplicationMasterDataDaoImpl<RSOfferEntity> 
     Long toLocationId = rsOfferSearchCriteriaTo.getRequest().getToLocation();
 
     query.where(($(rsOffer.getDepartureTime()).between(earliestDepartureTime, latestDepartureTime))
-        .and($(rsOffer.getFromLocation()).eq(fromLocationId)).and($(rsOffer.getToLocation()).eq(toLocationId)));
+            .and($(rsOffer.getNumberOfPlaces()).notIn(0))
+            .and($(rsOffer.getFromLocation()).eq(fromLocationId)).and($(rsOffer.getToLocation()).eq(toLocationId)));
+
 
     return findPaginated(rsOfferSearchCriteriaTo, query, alias);
   }

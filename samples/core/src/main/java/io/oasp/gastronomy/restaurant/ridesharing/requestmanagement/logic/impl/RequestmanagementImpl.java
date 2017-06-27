@@ -79,31 +79,31 @@ public class RequestmanagementImpl extends AbstractComponentFacade implements Re
     RequestEntity persistedRequest = getRequestDao().save(getBeanMapper().map(request, RequestEntity.class));
     RequestEto requestEto = getBeanMapper().map(persistedRequest, RequestEto.class);
 
-    matchRequestWithOffer(requestEto);
-
-    return requestEto;
-  }
-
-  private void matchRequestWithOffer(RequestEto request) {
     RSOfferSearchCriteriaTo rsOfferSearch = new RSOfferSearchCriteriaTo();
-    rsOfferSearch.setRequest(request);
+    rsOfferSearch.setRequest(requestEto);
+
     PaginatedListTo<RSOfferEntity> matchedRSOffersPaginatedList =
-        getRSOfferDao().checkRSOffertMatchedByOffer(rsOfferSearch);
+            getRSOfferDao().checkRSOffertMatchedByOffer(rsOfferSearch);
 
     List<RSOfferEntity> matchedRSOffers = matchedRSOffersPaginatedList.getResult();
 
     if (!matchedRSOffers.isEmpty()) {
-      referRequestToOffer(request, matchedRSOffers);
+      referRequestToOffer(requestEto, matchedRSOffers);
+    } else {
+      LOG.warn("no matched request found");
     }
+
+    LOG.warn("saved request with departure: " + requestEto.getEarliestDepartureTime() + " and " + requestEto.getLatestDepartureTime());
+    return requestEto;
   }
 
   private void referRequestToOffer(RequestEto request, List<RSOfferEntity> matchedRSOffers) {
-    for(RSOfferEntity rsOffer: matchedRSOffers){
-      if(rsOffer.getNumberOfPlaces() >= request.getNumberOfPlaces()){
+    for (RSOfferEntity rsOffer : matchedRSOffers) {
+      if (rsOffer.getNumberOfPlaces() >= request.getNumberOfPlaces()) {
 
         //update RSOfferIdMapped and save the new request
         request.setRSOfferIdMapped(rsOffer.getId());
-        getRequestDao().save(getBeanMapper().map(request,RequestEntity.class));
+        getRequestDao().save(getBeanMapper().map(request, RequestEntity.class));
 
         //update number of places and save the rsOffer with one place less
         rsOffer.setNumberOfPlaces(rsOffer.getNumberOfPlaces() - request.getNumberOfPlaces());

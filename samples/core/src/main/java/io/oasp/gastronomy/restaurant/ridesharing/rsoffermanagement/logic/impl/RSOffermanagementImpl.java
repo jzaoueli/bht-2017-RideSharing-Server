@@ -77,38 +77,37 @@ public class RSOffermanagementImpl extends AbstractComponentFacade implements RS
     RSOfferEntity persistedRSOffer = getRSOfferDao().save(getBeanMapper().map(rsoffer, RSOfferEntity.class));
     RSOfferEto rsOfferEto = getBeanMapper().map(persistedRSOffer, RSOfferEto.class);
 
-    matchOfferWithRequests(rsOfferEto);
-
-    return rsOfferEto;
-  }
-
-  private void matchOfferWithRequests(RSOfferEto rsOfferEto) {
+    // check matched requests
     RequestSearchCriteriaTo requestSearch = new RequestSearchCriteriaTo();
     requestSearch.setRSOffer(rsOfferEto);
     PaginatedListTo<RequestEntity> matchedRequestsPaginatedList =
-        getRequestDao().checkRequestMatchedByOffer(requestSearch);
+            getRequestDao().checkRequestMatchedByOffer(requestSearch);
 
     List<RequestEntity> matchedRequests = matchedRequestsPaginatedList.getResult();
     if (!matchedRequests.isEmpty()) {
-      referRequestToOffer(rsOfferEto,matchedRequests);
+      referRequestToOffer(rsOfferEto, matchedRequests);
+    } else {
+      LOG.warn("no matched request found");
     }
+    LOG.warn("saved offer with departure: " + rsOfferEto.getDepartureTime());
+    return rsOfferEto;
   }
 
   private void referRequestToOffer(RSOfferEto rsOfferEto, List<RequestEntity> matchedRequests) {
     int numberOfPlaces = rsOfferEto.getNumberOfPlaces();
-    while (numberOfPlaces > 0){
-      for(RequestEntity request: matchedRequests){
-        if(request.getNumberOfPlaces() < numberOfPlaces ){
+    for(RequestEntity request: matchedRequests){
+      if(request.getNumberOfPlaces() <= numberOfPlaces ){
+        //update RSOfferIdMapped and save the new request
+        request.setRSOfferIdMapped(rsOfferEto.getId());
+        getRequestDao().save(request);
 
-          //update RSOfferIdMapped and save the new request
-          request.setRSOfferIdMapped(rsOfferEto.getId());
-          getRequestDao().save(request);
-
-          //update number of places and save the rsOffer with one place less
-          numberOfPlaces = numberOfPlaces - request.getNumberOfPlaces();
-          rsOfferEto.setNumberOfPlaces(numberOfPlaces);
-          getRSOfferDao().save(getBeanMapper().map(rsOfferEto, RSOfferEntity.class));
-        }
+        //update number of places and save the rsOffer with one place less
+        numberOfPlaces = numberOfPlaces - request.getNumberOfPlaces();
+        rsOfferEto.setNumberOfPlaces(numberOfPlaces);
+        getRSOfferDao().save(getBeanMapper().map(rsOfferEto, RSOfferEntity.class));
+      }
+      if(numberOfPlaces == 0) {
+        return;
       }
     }
   }

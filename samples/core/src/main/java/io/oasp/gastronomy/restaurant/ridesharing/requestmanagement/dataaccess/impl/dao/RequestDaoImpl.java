@@ -46,10 +46,11 @@ public class RequestDaoImpl extends ApplicationMasterDataDaoImpl<RequestEntity> 
     Long fromLocationId = requestSearchCriteriaTo.getRSOffer().getFromLocation();
     Long toLocationId = requestSearchCriteriaTo.getRSOffer().getToLocation();
 
-    query.where(($(request.getRSOfferIdMapped()).in(0))
-        .and($(request.getEarliestDepartureTime()).before(departureTime))
-        .and($(request.getLatestDepartureTime()).after(departureTime))
-        .and($(request.getFromLocation()).eq(fromLocationId)).and($(request.getToLocation()).eq(toLocationId)));
+    query.where(($(request.getEarliestDepartureTime()).before(departureTime))
+            .and($(request.getRSOfferIdMapped()).in(0))
+            .and($(request.getLatestDepartureTime()).after(departureTime))
+            .and($(request.getFromLocation()).eq(fromLocationId)).and($(request.getToLocation()).eq(toLocationId)));
+
 
     return findPaginated(requestSearchCriteriaTo, query, alias);
   }
