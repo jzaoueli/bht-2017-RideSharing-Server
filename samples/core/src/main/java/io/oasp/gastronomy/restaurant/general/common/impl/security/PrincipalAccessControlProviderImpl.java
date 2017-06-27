@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import javax.inject.Named;
 
-import io.oasp.gastronomy.restaurant.general.common.api.UserProfile;
+import io.oasp.gastronomy.restaurant.ridesharing.general.CGUserProfile;
 import io.oasp.module.security.common.api.accesscontrol.PrincipalAccessControlProvider;
 
 /**
@@ -18,7 +18,7 @@ import io.oasp.module.security.common.api.accesscontrol.PrincipalAccessControlPr
  *
  */
 @Named
-public class PrincipalAccessControlProviderImpl implements PrincipalAccessControlProvider<UserProfile> {
+public class PrincipalAccessControlProviderImpl implements PrincipalAccessControlProvider<CGUserProfile> {
 
   /**
    * The constructor.
@@ -29,9 +29,10 @@ public class PrincipalAccessControlProviderImpl implements PrincipalAccessContro
   }
 
   @Override
-  public Collection<String> getAccessControlIds(UserProfile principal) {
+  public Collection<String> getAccessControlIds(CGUserProfile principal) {
 
-    return Arrays.asList(principal.getRole().getName());
+  //TODO: replace with "return Collections.singletonList(principal.getName());"
+    return Arrays.asList(principal.getName());
   }
 
 }

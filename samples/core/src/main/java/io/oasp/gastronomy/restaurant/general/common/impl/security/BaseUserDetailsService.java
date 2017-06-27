@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import io.oasp.gastronomy.restaurant.ridesharing.general.CGUserProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,14 +18,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import io.oasp.gastronomy.restaurant.general.common.api.UserProfile;
 import io.oasp.gastronomy.restaurant.general.common.api.Usermanagement;
 import io.oasp.gastronomy.restaurant.general.common.api.security.UserData;
 import io.oasp.module.security.common.api.accesscontrol.AccessControl;
 import io.oasp.module.security.common.api.accesscontrol.AccessControlProvider;
 import io.oasp.module.security.common.api.accesscontrol.PrincipalAccessControlProvider;
 import io.oasp.module.security.common.base.accesscontrol.AccessControlGrantedAuthority;
-import io.oasp.gastronomy.restaurant.general.service.impl.config.BaseWebSecurityConfig;
 
 /**
  * This class represents a customized implementation of the {@link UserDetailsService} interface.<br/>
@@ -54,7 +53,6 @@ import io.oasp.gastronomy.restaurant.general.service.impl.config.BaseWebSecurity
  * </pre>
  * <p>
  * <br/>
- * For another example, have a look at {@link BaseWebSecurityConfig}.
  */
 @Named
 public class BaseUserDetailsService implements UserDetailsService {
@@ -70,19 +68,19 @@ public class BaseUserDetailsService implements UserDetailsService {
 
     private AccessControlProvider accessControlProvider;
 
-    private PrincipalAccessControlProvider<UserProfile> principalAccessControlProvider;
+    private PrincipalAccessControlProvider<CGUserProfile> principalAccessControlProvider;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        UserProfile principal = retrievePrincipal(username);
+        CGUserProfile principal = retrievePrincipal(username);
         Set<GrantedAuthority> authorities = getAuthorities(principal);
         UserDetails user;
         try {
             // amBuilder uses the InMemoryUserDetailsManager, because it is configured in BaseWebSecurityConfig
             user = getAmBuilder().getDefaultUserDetailsService().loadUserByUsername(username);
             UserData userData = new UserData(user.getUsername(), user.getPassword(), authorities);
-            userData.setUserProfile(principal);
+            userData.setCgUserProfile(principal);
             return userData;
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,13 +91,13 @@ public class BaseUserDetailsService implements UserDetailsService {
     }
 
     /**
-     * Returns the {@link GrantedAuthority}s of the user associated with the provided {@link UserProfile}.
+     * Returns the {@link GrantedAuthority}s of the user associated with the provided {@link CGUserProfile}.
      *
-     * @param principal the {@link UserProfile} of the user
+     * @param principal the {@link CGUserProfile} of the user
      * @return the associated {@link GrantedAuthority}s
      * @throws AuthenticationException if no principal is retrievable for the given {@code username}
      */
-    protected Set<GrantedAuthority> getAuthorities(UserProfile principal) throws AuthenticationException {
+    protected Set<GrantedAuthority> getAuthorities(CGUserProfile principal) throws AuthenticationException {
 
         if (principal == null) {
             LOG.warn("Principal must not be null.");
@@ -123,9 +121,9 @@ public class BaseUserDetailsService implements UserDetailsService {
 
     /**
      * @param username The {@code username} for which the {@code UserProfile} will be queried.
-     * @return An instance of type {@link UserProfile} obtained by querying the {@code username}.
+     * @return An instance of type {@link CGUserProfile} obtained by querying the {@code username}.
      */
-    protected UserProfile retrievePrincipal(String username) {
+    protected CGUserProfile retrievePrincipal(String username) {
 
         try {
             return this.usermanagement.findUserProfileByLogin(username);
@@ -191,7 +189,7 @@ public class BaseUserDetailsService implements UserDetailsService {
     /**
      * @return principalAccessControlProvider
      */
-    public PrincipalAccessControlProvider<UserProfile> getPrincipalAccessControlProvider() {
+    public PrincipalAccessControlProvider<CGUserProfile> getPrincipalAccessControlProvider() {
 
         return this.principalAccessControlProvider;
     }
@@ -201,7 +199,7 @@ public class BaseUserDetailsService implements UserDetailsService {
      */
     @Inject
     public void setPrincipalAccessControlProvider(
-            PrincipalAccessControlProvider<UserProfile> principalAccessControlProvider) {
+            PrincipalAccessControlProvider<CGUserProfile> principalAccessControlProvider) {
 
         this.principalAccessControlProvider = principalAccessControlProvider;
     }

@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import io.oasp.gastronomy.restaurant.ridesharing.general.CGUserProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,7 +16,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import io.oasp.gastronomy.restaurant.general.common.api.UserProfile;
 import io.oasp.gastronomy.restaurant.general.common.api.Usermanagement;
 import io.oasp.gastronomy.restaurant.general.common.api.security.UserData;
 import io.oasp.module.security.common.base.accesscontrol.AbstractAccessControlBasedAuthenticationProvider;
@@ -32,7 +32,7 @@ import io.oasp.module.security.common.base.accesscontrol.AbstractAccessControlBa
 @Deprecated
 @Named("ApplicationAuthenticationProvider")
 public class ApplicationAuthenticationProvider
-    extends AbstractAccessControlBasedAuthenticationProvider<UserData, UserProfile> {
+    extends AbstractAccessControlBasedAuthenticationProvider<UserData, CGUserProfile> {
 
   /** Logger instance. */
   private static final Logger LOG = LoggerFactory.getLogger(ApplicationAuthenticationProvider.class);
@@ -64,7 +64,7 @@ public class ApplicationAuthenticationProvider
   }
 
   @Override
-  protected UserProfile retrievePrincipal(String username, UsernamePasswordAuthenticationToken authentication) {
+  protected CGUserProfile retrievePrincipal(String username, UsernamePasswordAuthenticationToken authentication) {
 
     try {
       return this.usermanagement.findUserProfileByLogin(username);
@@ -77,11 +77,11 @@ public class ApplicationAuthenticationProvider
   }
 
   @Override
-  protected UserData createUser(String username, String password, UserProfile principal,
+  protected UserData createUser(String username, String password, CGUserProfile principal,
       Set<GrantedAuthority> authorities) {
 
     UserData user = new UserData(username, password, authorities);
-    user.setUserProfile(principal);
+    user.setCgUserProfile(principal);
     return user;
   }
 
@@ -89,7 +89,7 @@ public class ApplicationAuthenticationProvider
    * Leave empty on purpose. Not used in this version.
    */
   @Override
-  protected UserProfile retrievePrincipal(String username) {
+  protected CGUserProfile retrievePrincipal(String username) {
 
     return null;
   }

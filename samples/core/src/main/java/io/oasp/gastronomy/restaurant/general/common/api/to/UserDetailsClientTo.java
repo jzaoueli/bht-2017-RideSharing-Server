@@ -1,14 +1,13 @@
 package io.oasp.gastronomy.restaurant.general.common.api.to;
 
-import io.oasp.gastronomy.restaurant.general.common.api.UserProfile;
-import io.oasp.gastronomy.restaurant.general.common.api.datatype.Role;
+import io.oasp.gastronomy.restaurant.ridesharing.general.CGUserProfile;
 import io.oasp.module.basic.common.api.to.AbstractTo;
 
 /**
  * This is the {@link AbstractTo TO} for the client view on the user details.
  *
  */
-public class UserDetailsClientTo extends AbstractTo implements UserProfile {
+public class UserDetailsClientTo extends AbstractTo implements CGUserProfile {
 
   /** UID for serialization. */
   private static final long serialVersionUID = 1L;
@@ -17,11 +16,13 @@ public class UserDetailsClientTo extends AbstractTo implements UserProfile {
 
   private String name;
 
-  private String firstName;
+  private String emailAddress;
 
-  private String lastName;
+  private String mobileNumber;
 
-  private Role role;
+  private String cgHomeLocation;
+
+  private boolean validationStatus;
 
   /**
    * The constructor.
@@ -44,21 +45,23 @@ public class UserDetailsClientTo extends AbstractTo implements UserProfile {
   }
 
   @Override
-  public String getFirstName() {
-
-    return this.firstName;
+  public String getEmailAddress() {
+    return this.emailAddress;
   }
 
   @Override
-  public String getLastName() {
-
-    return this.lastName;
+  public String getMobileNumber() {
+    return this.mobileNumber;
   }
 
   @Override
-  public Role getRole() {
+  public String getCgHomeLocation() {
+    return this.cgHomeLocation;
+  }
 
-    return this.role;
+  @Override
+  public boolean getValidationStatus() {
+    return this.validationStatus;
   }
 
   /**
@@ -79,28 +82,20 @@ public class UserDetailsClientTo extends AbstractTo implements UserProfile {
     this.name = name;
   }
 
-  /**
-   * @param firstName the firstName to set
-   */
-  public void setFirstName(String firstName) {
-
-    this.firstName = firstName;
+  public void setEmailAddress(String emailAddress) {
+    this.emailAddress = emailAddress;
   }
 
-  /**
-   * @param lastName the lastName to set
-   */
-  public void setLastName(String lastName) {
-
-    this.lastName = lastName;
+  public void setMobileNumber(String mobileNumber) {
+    this.mobileNumber = mobileNumber;
   }
 
-  /**
-   * @param role the role to set
-   */
-  public void setRole(Role role) {
+  public void setCgHomeLocation(String cgHomeLocation) {
+    this.cgHomeLocation = cgHomeLocation;
+  }
 
-    this.role = role;
+  public void setValidationStatus(boolean validationStatus) {
+    this.validationStatus = validationStatus;
   }
 
 }

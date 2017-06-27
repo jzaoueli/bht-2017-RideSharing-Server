@@ -1,11 +1,11 @@
 package io.oasp.gastronomy.restaurant.general.common.api.security;
 
-import io.oasp.gastronomy.restaurant.general.common.api.UserProfile;
 import io.oasp.gastronomy.restaurant.general.common.api.to.UserDetailsClientTo;
 
 import java.security.Principal;
 import java.util.Collection;
 
+import io.oasp.gastronomy.restaurant.ridesharing.general.CGUserProfile;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,7 +19,7 @@ public class UserData extends User implements Principal {
 
   private static final long serialVersionUID = 1L;
 
-  private UserProfile userProfile;
+  private CGUserProfile cgUserProfile;
 
   /**
    * The constructor.
@@ -63,11 +63,12 @@ public class UserData extends User implements Principal {
   public UserDetailsClientTo toClientTo() {
 
     UserDetailsClientTo clientTo = new UserDetailsClientTo();
-    clientTo.setId(this.userProfile.getId());
-    clientTo.setName(this.userProfile.getName());
-    clientTo.setFirstName(this.userProfile.getFirstName());
-    clientTo.setLastName(this.userProfile.getLastName());
-    clientTo.setRole(this.userProfile.getRole());
+    clientTo.setId(this.cgUserProfile.getId());
+    clientTo.setName(this.cgUserProfile.getName());
+    clientTo.setEmailAddress(this.cgUserProfile.getEmailAddress());
+    clientTo.setMobileNumber(this.cgUserProfile.getMobileNumber());
+    clientTo.setCgHomeLocation(this.cgUserProfile.getCgHomeLocation());
+    clientTo.setValidationStatus(this.cgUserProfile.getValidationStatus());
     return clientTo;
   }
 
@@ -78,19 +79,19 @@ public class UserData extends User implements Principal {
   }
 
   /**
-   * @return userProfile
+   * @return cgUserProfile
    */
-  public UserProfile getUserProfile() {
+  public CGUserProfile getCgUserProfile() {
 
-    return this.userProfile;
+    return this.cgUserProfile;
   }
 
   /**
-   * @param userProfile the userProfile to set
+   * @param cgUserProfile the cgUserProfile to set
    */
-  public void setUserProfile(UserProfile userProfile) {
+  public void setCgUserProfile(CGUserProfile cgUserProfile) {
 
-    this.userProfile = userProfile;
+    this.cgUserProfile = cgUserProfile;
   }
 
   /**
