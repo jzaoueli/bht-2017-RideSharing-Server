@@ -30,7 +30,8 @@ CREATE TABLE CGMEMBER(
     EmailAddress VARCHAR(255),
     MobileNumber VARCHAR(20),
     CGHomeLocation VARCHAR(255),
-    ValidationStatus bit  
+    ValidationStatus bit,
+    CreationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- *** RS Offer ***
@@ -44,7 +45,8 @@ CREATE TABLE RSOFFER(
     Delay INT, 
     NumberOfPlaces INT,
     LuggageSpace VARCHAR(10),
-    Status bit
+    Status bit,
+    CreationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- ** RSOFFER dependency --
@@ -63,7 +65,8 @@ CREATE TABLE REQUEST(
     LatestDepartureTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     NumberOfPlaces INT,
     LuggageSpace VARCHAR(10),
-    RSOFFERIDMapped BIGINT
+    RSOFFERIDMapped BIGINT,
+    CreationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- ** REQUEST dependency --
