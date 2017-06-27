@@ -2,8 +2,8 @@
 <entity-mappings version="1.0" xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
 
-  <named-query name="get.staff.member.by.login">
-    <query><![CDATA[SELECT s FROM StaffMemberEntity s WHERE login = :login]]></query>
+  <named-query name="get.cg.member.by.name">
+    <query><![CDATA[SELECT s FROM CGMemberEntity s WHERE name = :name]]></query>
   </named-query>
 
   <!-- Uncomment the following if the database used is H2 -->

@@ -5,6 +5,7 @@ package io.oasp.gastronomy.restaurant.general.common.api.constants;
  */
 public class NamedQueries {
 
-    /** @see io.oasp.gastronomy.restaurant.staffmanagement.dataaccess.impl.dao.StaffMemberDaoImpl#findByLogin(String) */
-    public static final String GET_STAFF_MEMBER_BY_LOGIN = "get.staff.member.by.login";
+    /** @see io.oasp.gastronomy.restaurant.ridesharing.cgusermanagement.dataaccess.impl.CGMemberDaoImpl#findByName(String) */
+    public static final String GET_CG_MEMBER_BY_NAME = "get.cg.member.by.name";
+
 }

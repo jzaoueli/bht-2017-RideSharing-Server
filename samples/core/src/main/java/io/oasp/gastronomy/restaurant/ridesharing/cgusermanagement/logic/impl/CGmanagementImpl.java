@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
+import io.oasp.gastronomy.restaurant.general.common.api.Usermanagement;
+import io.oasp.gastronomy.restaurant.ridesharing.general.CGUserProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -21,7 +23,7 @@ import io.oasp.gastronomy.restaurant.ridesharing.cgusermanagement.logic.api.to.C
 @Named
 @Component
 @Transactional
-public class CGmanagementImpl extends AbstractComponentFacade implements CGmanagement {
+public class CGmanagementImpl extends AbstractComponentFacade implements CGmanagement, Usermanagement {
 
   private static final Logger LOG = LoggerFactory.getLogger(CGmanagementImpl.class);
 
@@ -97,4 +99,12 @@ public class CGmanagementImpl extends AbstractComponentFacade implements CGmanag
     getCGMemberDao().delete(memberId);
   }
 
+  @Override
+  public CGUserProfile findUserProfileByLogin(String name) {
+    return privateFindMemberByName(name);
+  }
+
+  private CGMemberEto privateFindMemberByName(String name) {
+    return getBeanMapper().map(getCGMemberDao().findByName(name), CGMemberEto.class);
+  }
 }
