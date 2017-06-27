@@ -77,7 +77,12 @@ public class RSOffermanagementImpl extends AbstractComponentFacade implements RS
     RSOfferEntity persistedRSOffer = getRSOfferDao().save(getBeanMapper().map(rsoffer, RSOfferEntity.class));
     RSOfferEto rsOfferEto = getBeanMapper().map(persistedRSOffer, RSOfferEto.class);
 
-    // check matched requests
+    matchOfferWithRequests(rsOfferEto);
+
+    return rsOfferEto;
+  }
+
+  private void matchOfferWithRequests(RSOfferEto rsOfferEto) {
     RequestSearchCriteriaTo requestSearch = new RequestSearchCriteriaTo();
     requestSearch.setRSOffer(rsOfferEto);
     PaginatedListTo<RequestEntity> matchedRequestsPaginatedList =
@@ -87,9 +92,6 @@ public class RSOffermanagementImpl extends AbstractComponentFacade implements RS
     if (!matchedRequests.isEmpty()) {
       referRequestToOffer(rsOfferEto,matchedRequests);
     }
-
-    LOG.warn("saved offer with departure: " + rsOfferEto.getDepartureTime().toLocaleString());
-    return rsOfferEto;
   }
 
   private void referRequestToOffer(RSOfferEto rsOfferEto, List<RequestEntity> matchedRequests) {
@@ -97,6 +99,7 @@ public class RSOffermanagementImpl extends AbstractComponentFacade implements RS
     while (numberOfPlaces > 0){
       for(RequestEntity request: matchedRequests){
         if(request.getNumberOfPlaces() < numberOfPlaces ){
+
           //update RSOfferIdMapped and save the new request
           request.setRSOfferIdMapped(rsOfferEto.getId());
           getRequestDao().save(request);
