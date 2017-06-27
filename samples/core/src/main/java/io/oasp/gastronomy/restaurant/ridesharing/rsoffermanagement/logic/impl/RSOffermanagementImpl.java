@@ -84,19 +84,30 @@ public class RSOffermanagementImpl extends AbstractComponentFacade implements RS
         getRequestDao().checkRequestMatchedByOffer(requestSearch);
 
     List<RequestEntity> matchedRequests = matchedRequestsPaginatedList.getResult();
-
     if (!matchedRequests.isEmpty()) {
-      // TODO: update offer.numberOFPlaces and request.rsofferIdMapped
-      LOG.warn("found matched requests: " + matchedRequests.size());
-      for (RequestEntity requestEntity : matchedRequests) {
-        LOG.warn("found matched request from user : " + requestEntity.getUserId());
-      }
-    } else {
-      LOG.warn("no matched request found");
+      referRequestToOffer(rsOfferEto,matchedRequests);
     }
 
-    LOG.warn("saved offer with departure: " + rsOfferEto.getDepartureTime());
+    LOG.warn("saved offer with departure: " + rsOfferEto.getDepartureTime().toLocaleString());
     return rsOfferEto;
+  }
+
+  private void referRequestToOffer(RSOfferEto rsOfferEto, List<RequestEntity> matchedRequests) {
+    int numberOfPlaces = rsOfferEto.getNumberOfPlaces();
+    while (numberOfPlaces > 0){
+      for(RequestEntity request: matchedRequests){
+        if(request.getNumberOfPlaces() < numberOfPlaces ){
+          //update RSOfferIdMapped and save the new request
+          request.setRSOfferIdMapped(rsOfferEto.getId());
+          getRequestDao().save(request);
+
+          //update number of places and save the rsOffer with one place less
+          numberOfPlaces = numberOfPlaces - request.getNumberOfPlaces();
+          rsOfferEto.setNumberOfPlaces(numberOfPlaces);
+          getRSOfferDao().save(getBeanMapper().map(rsOfferEto, RSOfferEntity.class));
+        }
+      }
+    }
   }
 
   @Override
