@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
+import io.oasp.gastronomy.restaurant.general.common.api.constants.PermissionConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -43,14 +45,14 @@ public class RequestmanagementImpl extends AbstractComponentFacade implements Re
   private RSOfferDao rsOfferDao;
 
   @Override
-  // @RolesAllowed(PermissionConstants.FIND_REQUEST)
+  @RolesAllowed(PermissionConstants.FIND_REQUEST)
   public RequestEto findRequest(Long id) {
 
     return getBeanMapper().map(getRequestDao().find(id), RequestEto.class);
   }
 
   @Override
-  // @RolesAllowed(PermissionConstants.FIND_REQUEST)
+  @RolesAllowed(PermissionConstants.FIND_REQUEST)
   public List<RequestEto> findAllRequests() {
 
     List<RequestEntity> requests = getRequestDao().findAll();
@@ -64,14 +66,14 @@ public class RequestmanagementImpl extends AbstractComponentFacade implements Re
   }
 
   @Override
-  // @RolesAllowed(PermissionConstants.DELETE_REQUEST)
+  @RolesAllowed(PermissionConstants.DELETE_REQUEST)
   public void deleteRequest(Long requestId) {
 
     getRequestDao().delete(requestId);
   }
 
   @Override
-  // @RolesAllowed(PermissionConstants.SAVE_REQUEST)
+  @RolesAllowed(PermissionConstants.SAVE_REQUEST)
   public RequestEto saveRequest(RequestEto request) {
 
     Objects.requireNonNull(request, "request");

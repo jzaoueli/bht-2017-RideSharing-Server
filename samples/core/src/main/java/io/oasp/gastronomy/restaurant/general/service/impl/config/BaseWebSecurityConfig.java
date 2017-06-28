@@ -133,9 +133,13 @@ public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter
     @Inject
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.inMemoryAuthentication().withUser("waiter").password("waiter").roles("Waiter").and().withUser("cook")
-                .password("cook").roles("Cook").and().withUser("barkeeper").password("barkeeper").roles("Barkeeper").and()
-                .withUser("chief").password("chief").roles("Chief");
+        auth.inMemoryAuthentication()
+                .withUser("admin").password("admin").roles("admin")
+                .and().withUser("user").password("user").roles("user");
+                /*.and().withUser("waiter").password("waiter").roles("Waiter")
+                .and().withUser("cook").password("cook").roles("Cook")
+                .and().withUser("barkeeper").password("barkeeper").roles("Barkeeper")
+                .and().withUser("chief").password("chief").roles("Chief");*/
     }
 
 }

@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
 import io.oasp.gastronomy.restaurant.general.common.api.Usermanagement;
+import io.oasp.gastronomy.restaurant.general.common.api.constants.PermissionConstants;
 import io.oasp.gastronomy.restaurant.ridesharing.general.CGUserProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,14 +42,14 @@ public class CGmanagementImpl extends AbstractComponentFacade implements CGmanag
     return this.cgMemberDao;
   }
 
-  // @RolesAllowed(PermissionConstants.FIND_STAFF_MEMBER)
+  @RolesAllowed(PermissionConstants.FIND_CG_MEMBER)
   @Override
   public CGMemberEto findMember(Long id) {
 
     return getBeanMapper().map(getCGMemberDao().find(id), CGMemberEto.class);
   }
 
-  // @RolesAllowed(PermissionConstants.FIND_STAFF_MEMBER)
+  @RolesAllowed(PermissionConstants.FIND_CG_MEMBER)
   @Override
   public List<CGMemberEto> findAllCGMembers() {
 
@@ -61,11 +63,7 @@ public class CGmanagementImpl extends AbstractComponentFacade implements CGmanag
     return membersBo;
   }
 
-  // @Override
-  // public CGMemberEto saveMember(CGMemberEto member) {
-  // }
-
-  // @RolesAllowed(PermissionConstants.SAVE_STAFF_MEMBER)
+  @RolesAllowed(PermissionConstants.SAVE_CG_MEMBER)
   @Override
   public CGMemberEto saveMember(CGMemberEto cgMember) {
 
@@ -92,7 +90,7 @@ public class CGmanagementImpl extends AbstractComponentFacade implements CGmanag
     return getBeanMapper().map(persistedcgMember, CGMemberEto.class);
   }
 
-  // @RolesAllowed(PermissionConstants.DELETE_STAFF_MEMBER)
+  @RolesAllowed(PermissionConstants.DELETE_CG_MEMBER)
   @Override
   public void deleteMember(Long memberId) {
 

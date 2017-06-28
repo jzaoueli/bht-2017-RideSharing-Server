@@ -1,72 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <access-control-schema>
-  <group id="ReadMasterData" type="group">
+
+  <group id="ReadMasterRideSharingData" type="group">
     <permissions>
-      <!-- BEGIN ARCHETYPE SKIP -->
-      <!-- offermanagement -->
-      <permission id="FindOffer"/>
-      <permission id="FindProduct"/>
-      <permission id="FindProductPicture"/>
-      <!-- tablemanagement -->
-      <permission id="FindTable"/>
-      <!-- staffmanagement -->
-      <permission id="FindStaffMember"/>
-      <!-- END ARCHETYPE SKIP -->
+      <permission id="FindRSOffer"/>
+      <permission id="FindRequest"/>
+      <permission id="FindTransportPoint"/>
     </permissions>
   </group>
 
-  <!-- BEGIN ARCHETYPE SKIP -->
-  <group id="Waiter" type="role">
+  <group id="user" type="role">
     <inherits>
-      <group-ref>Barkeeper</group-ref>
+      <group-ref>ReadMasterRideSharingData</group-ref>
     </inherits>
     <permissions>
-      <!-- tablemanagement -->
-      <permission id="SaveTable"/>
+      <permission id="SaveRSOffer"/>
+      <permission id="DeleteRSOffer"/>
+      <permission id="SaveRequest"/>
+      <permission id="DeleteRequest"/>
+      <permission id="FindCGMember"/>
+      <permission id="SaveUser"/>
+      <permission id="DeleteUser"/>
     </permissions>
   </group>
-  <group id="Barkeeper" type="role">
+
+  <group id="admin" type="role">
     <inherits>
-      <group-ref>Cook</group-ref>
-    </inherits>
-    <permissions>
-      <!-- salesmanagement -->
-      <permission id="SaveBill"/>
-      <permission id="FindBill"/>
-      <permission id="DeleteBill"/>
-      <permission id="DeleteOrder"/>
-    </permissions>
-  </group>
-  <group id="Cook" type="role">
-    <inherits>
-      <group-ref>ReadMasterData</group-ref>
-    </inherits>
-    <permissions>
-      <!-- salesmanagement -->
-      <permission id="SaveOrder"/>
-      <permission id="FindOrder"/>
-      <permission id="SaveOrderPosition"/>
-      <permission id="FindOrderPosition"/>
-    </permissions>
-  </group>
-  <group id="Chief" type="role">
-    <inherits>
-      <group-ref>Waiter</group-ref>
+      <group-ref>user</group-ref>
     </inherits>
     <permissions>
       <!-- offermanagement -->
-      <permission id="SaveOffer"/>
-      <permission id="DeleteOffer"/>
-      <permission id="SaveProduct"/>
-      <permission id="DeleteProduct"/>
-      <permission id="SaveProductPicture"/>
-      <permission id="DeleteProductPicture"/>
-      <!-- staffmanagement -->
-      <permission id="SaveStaffMember"/>
-      <permission id="DeleteStaffMember"/>
-      <permission id="DeleteOrderPosition"/>
-      <!-- tablemanagement -->
-      <permission id="DeleteTable"/>
+      <permission id="SaveTransportPoint"/>
+      <permission id="DeleteTransportPoint"/>
     </permissions>
   </group>
   <!-- END ARCHETYPE SKIP -->

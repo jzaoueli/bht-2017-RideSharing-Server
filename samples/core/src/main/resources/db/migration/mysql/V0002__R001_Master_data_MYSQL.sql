@@ -28,10 +28,6 @@ INSERT INTO CGMEMBER (id, modificationCounter, Name, EmailAddress, MobileNumber,
 VALUES (103, 1, 'user3', 'mo3@mo.de', '15315326266', 'Mortiz platz 10243 Berlin', true, '2017-06-01 12:00:00');
 INSERT INTO CGMEMBER (id, modificationCounter, Name, EmailAddress, MobileNumber, CGHomeLocation, ValidationStatus, CreationDate)
 VALUES (104, 1, 'user4', 'mo4@mo.de', '15315326266', 'Morits platz 10243 Berlin', true, '2017-06-01 12:00:00');
-INSERT INTO CGMEMBER (id, modificationCounter, Name, EmailAddress, MobileNumber, CGHomeLocation, ValidationStatus, CreationDate)
-VALUES (105, 1, 'chief', 'mo4@mo.de', '15315326266', 'Morits platz 10243 Berlin', true, '2017-06-01 12:00:00');
-INSERT INTO CGMEMBER (id, modificationCounter, Name, EmailAddress, MobileNumber, CGHomeLocation, ValidationStatus, CreationDate)
-VALUES (106, 1, 'waiter', 'mo4@mo.de', '15315326266', 'Morits platz 10243 Berlin', true, '2017-06-01 12:00:00');
 
 -- ** some offer **
 INSERT INTO RSOFFER (ID ,modificationCounter,UserID ,FromLocation , ToLocation , DepartureTime ,Delay ,NumberOfPlaces ,LuggageSpace , Status, CreationDate)
@@ -53,9 +49,3 @@ INSERT INTO REQUEST (ID ,modificationCounter,UserID ,FromLocation, ToLocation , 
 VALUES (3,1, 103, 1, 6, '2017-05-10 23:59:59', '2017-05-10 23:59:59', 1, 'medium', 1, '2017-06-01 12:00:00');
 INSERT INTO REQUEST (ID ,modificationCounter,UserID ,FromLocation, ToLocation , EarliestDepartureTime , LatestDepartureTime , NumberOfPlaces , LuggageSpace , RSOfferIDMapped, CreationDate)
 VALUES (4,1, 102, 2, 6, '2017-05-10 23:59:59', '2017-05-10 23:59:59', 2, 'medium', 1, '2017-06-01 12:00:00');
-
---- 
-INSERT INTO STAFFMEMBER (id, modificationCounter, role, login, firstname, lastname) VALUES (1, 0, 3, 'chief', 'Charly', 'Chief');
-INSERT INTO STAFFMEMBER (id, modificationCounter, role, login, firstname, lastname) VALUES (2, 0, 0, 'cook', 'Carl', 'Cook');
-INSERT INTO STAFFMEMBER (id, modificationCounter, role, login, firstname, lastname) VALUES (3, 0, 1, 'waiter', 'Willy', 'Waiter');
-INSERT INTO STAFFMEMBER (id, modificationCounter, role, login, firstname, lastname) VALUES (4, 0, 2, 'barkeeper', 'Bianca', 'Barkeeper');

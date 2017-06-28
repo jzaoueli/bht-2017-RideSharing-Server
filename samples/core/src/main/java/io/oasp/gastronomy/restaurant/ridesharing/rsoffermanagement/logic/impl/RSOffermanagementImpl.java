@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
+import io.oasp.gastronomy.restaurant.general.common.api.constants.PermissionConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -41,14 +43,14 @@ public class RSOffermanagementImpl extends AbstractComponentFacade implements RS
   private RequestDao requestDao;
 
   @Override
-  // @RolesAllowed(PermissionConstants.FIND_REQUEST)
+  @RolesAllowed(PermissionConstants.FIND_RSOFFER)
   public RSOfferEto findRSOffer(Long id) {
 
     return getBeanMapper().map(getRSOfferDao().find(id), RSOfferEto.class);
   }
 
   @Override
-  // @RolesAllowed(PermissionConstants.FIND_REQUEST)
+  @RolesAllowed(PermissionConstants.FIND_RSOFFER)
   public List<RSOfferEto> findAllRSOffers() {
 
     List<RSOfferEntity> rsoffers = getRSOfferDao().findAll();
@@ -62,14 +64,14 @@ public class RSOffermanagementImpl extends AbstractComponentFacade implements RS
   }
 
   @Override
-  // @RolesAllowed(PermissionConstants.DELETE_REQUEST)
+  @RolesAllowed(PermissionConstants.DELETE_RSOFFER)
   public void deleteRSOffer(Long rsofferId) {
 
     getRSOfferDao().delete(rsofferId);
   }
 
   @Override
-  // @RolesAllowed(PermissionConstants.SAVE_REQUEST)
+  @RolesAllowed(PermissionConstants.SAVE_RSOFFER)
   public RSOfferEto saveRSOffer(RSOfferEto rsoffer) {
 
     Objects.requireNonNull(rsoffer, "rsoffer");
@@ -77,7 +79,7 @@ public class RSOffermanagementImpl extends AbstractComponentFacade implements RS
     RSOfferEntity persistedRSOffer = getRSOfferDao().save(getBeanMapper().map(rsoffer, RSOfferEntity.class));
     RSOfferEto rsOfferEto = getBeanMapper().map(persistedRSOffer, RSOfferEto.class);
 
-    // check matched requests
+
     RequestSearchCriteriaTo requestSearch = new RequestSearchCriteriaTo();
     requestSearch.setRSOffer(rsOfferEto);
     PaginatedListTo<RequestEntity> matchedRequestsPaginatedList =

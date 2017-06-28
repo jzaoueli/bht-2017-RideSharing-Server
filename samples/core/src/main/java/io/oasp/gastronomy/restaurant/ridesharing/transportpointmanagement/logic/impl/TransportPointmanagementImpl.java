@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
+import io.oasp.gastronomy.restaurant.general.common.api.constants.PermissionConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -40,14 +42,14 @@ public class TransportPointmanagementImpl extends AbstractComponentFacade implem
     return this.transportPointDao;
   }
 
-  // @RolesAllowed(PermissionConstants.FIND_STAFF_MEMBER)
+  @RolesAllowed(PermissionConstants.FIND_TRANSPORTPOINT)
   @Override
   public TransportPointEto findTransportPoint(Long id) {
 
     return getBeanMapper().map(getTransportPointDao().find(id), TransportPointEto.class);
   }
 
-  // @RolesAllowed(PermissionConstants.FIND_STAFF_MEMBER)
+  @RolesAllowed(PermissionConstants.FIND_TRANSPORTPOINT)
   @Override
   public List<TransportPointEto> findAllTransportPoints() {
 
@@ -61,7 +63,7 @@ public class TransportPointmanagementImpl extends AbstractComponentFacade implem
     return transportPointsBo;
   }
 
-  // @RolesAllowed(PermissionConstants.SAVE_STAFF_MEMBER)
+  @RolesAllowed(PermissionConstants.SAVE_TRANSPORTPOINT)
   @Override
   public TransportPointEto saveTransportPoint(TransportPoint transportPoint) {
 
@@ -89,7 +91,7 @@ public class TransportPointmanagementImpl extends AbstractComponentFacade implem
     return getBeanMapper().map(persistedTransportPoint, TransportPointEto.class);
   }
 
-  // @RolesAllowed(PermissionConstants.DELETE_STAFF_MEMBER)
+  @RolesAllowed(PermissionConstants.DELETE_TRANSPORTPOINT)
   @Override
   public void deleteTransportPoint(Long transportPointId) {
 
