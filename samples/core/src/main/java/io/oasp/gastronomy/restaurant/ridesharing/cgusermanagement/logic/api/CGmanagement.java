@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import io.oasp.gastronomy.restaurant.ridesharing.cgusermanagement.logic.api.to.CGMemberEto;
-import io.oasp.gastronomy.restaurant.staffmanagement.logic.api.to.StaffMemberEto;
 
 /**
  * Interface for StaffManagement component.
@@ -14,7 +13,7 @@ import io.oasp.gastronomy.restaurant.staffmanagement.logic.api.to.StaffMemberEto
 public interface CGmanagement {
 
   /**
-   * @return {@link List} of all existing {@link StaffMemberEto staff members}.
+   * @return {@link List} of all existing {@link CGMemberEto staff members}.
    */
   List<CGMemberEto> findAllCGMembers();
 
