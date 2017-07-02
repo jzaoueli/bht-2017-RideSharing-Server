@@ -1,8 +1,6 @@
 package io.oasp.gastronomy.restaurant.ridesharing.cgusermanagement.dataaccess;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import io.oasp.gastronomy.restaurant.general.dataaccess.api.ApplicationPersistenceEntity;
 import io.oasp.gastronomy.restaurant.ridesharing.cgusermanagement.common.api.CGMember;
@@ -23,6 +21,9 @@ public class CGMemberEntity extends ApplicationPersistenceEntity implements CGMe
   @Column(name = "Name")
   private String name;
 
+  @Column(name = "password")
+  private String password;
+
   @Column(name = "EmailAddress")
   private String emailAddress;
 
@@ -34,6 +35,9 @@ public class CGMemberEntity extends ApplicationPersistenceEntity implements CGMe
 
   @Column(name = "ValidationStatus")
   private boolean validationStatus;
+
+  @Column(name = "role")
+  private String role;
 
   /*
    * @Override public Long getUserID() {
@@ -110,4 +114,20 @@ public class CGMemberEntity extends ApplicationPersistenceEntity implements CGMe
     this.validationStatus = validationStatus;
   }
 
+  public String getRole() {
+    return role;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
+  }
+
+  @Override
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
 }

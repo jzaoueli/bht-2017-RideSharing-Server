@@ -26,6 +26,10 @@ public class CGMemberEto extends AbstractEto implements CGMember {
 
   private boolean validationStatus;
 
+  private String role;
+
+  private String password;
+
   //
   private Locale language;
 
@@ -87,6 +91,15 @@ public class CGMemberEto extends AbstractEto implements CGMember {
     return this.validationStatus;
   }
 
+  @Override
+  public String getRole() {
+    return role;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
   /*
    * @Override public void setUserID(Long userID) {
    *
@@ -114,5 +127,14 @@ public class CGMemberEto extends AbstractEto implements CGMember {
   public void setValidationStatus(boolean validationStatus) {
 
     this.validationStatus = validationStatus;
+  }
+
+  @Override
+  public void setRole(String role) {
+    this.role = role;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 }

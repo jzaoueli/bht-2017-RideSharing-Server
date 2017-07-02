@@ -18,16 +18,16 @@ INSERT INTO TRANSPORTPOINT (ID ,modificationCounter, Name ,CGLocation ,Country ,
 VALUES (7, 1,"Berlin Flughafen", false, 'City6', 'Germany', 'Potsdamer platz 10243 Berlin', '52.5457966,13.5066605');
 
 -- ** insert some CG members points ** --
-INSERT INTO CGMEMBER (id, modificationCounter, Name, EmailAddress, MobileNumber, CGHomeLocation, ValidationStatus, CreationDate)
-VALUES (1, 1, 'admin', '-', '-', '-', true, '2017-06-01 12:00:00');
-INSERT INTO CGMEMBER (id, modificationCounter, Name, EmailAddress, MobileNumber, CGHomeLocation, ValidationStatus, CreationDate)
-VALUES (101, 1, 'user1', 'mo@mo.de', '15315326266', 'Mortiz platz 10243 Berlin', true, '2017-06-01 12:00:00');
-INSERT INTO CGMEMBER (id, modificationCounter, Name, EmailAddress, MobileNumber, CGHomeLocation, ValidationStatus, CreationDate)
-VALUES (102, 1, 'user2', 'mo2@mo.de', '15315326266', 'Mortiz platz 10243 Berlin', true, '2017-06-01 12:00:00');
-INSERT INTO CGMEMBER (id, modificationCounter, Name, EmailAddress, MobileNumber, CGHomeLocation, ValidationStatus, CreationDate)
-VALUES (103, 1, 'user3', 'mo3@mo.de', '15315326266', 'Mortiz platz 10243 Berlin', true, '2017-06-01 12:00:00');
-INSERT INTO CGMEMBER (id, modificationCounter, Name, EmailAddress, MobileNumber, CGHomeLocation, ValidationStatus, CreationDate)
-VALUES (104, 1, 'user4', 'mo4@mo.de', '15315326266', 'Morits platz 10243 Berlin', true, '2017-06-01 12:00:00');
+INSERT INTO CGMEMBER (id, modificationCounter, Name, Password, EmailAddress, MobileNumber, CGHomeLocation, ValidationStatus, Role, CreationDate)
+VALUES (1, 1, 'admin', 'adminpass', '-', '-', '-', true, 'admin', '2017-06-01 12:00:00');
+INSERT INTO CGMEMBER (id, modificationCounter, Name, Password, EmailAddress, MobileNumber, CGHomeLocation, ValidationStatus, Role, CreationDate)
+VALUES (101, 1, 'user1', 'password1', 'mo@mo.de', '15315326266', 'Mortiz platz 10243 Berlin', true, 'user', '2017-06-01 12:00:00');
+INSERT INTO CGMEMBER (id, modificationCounter, Name, Password, EmailAddress, MobileNumber, CGHomeLocation, ValidationStatus, Role,CreationDate)
+VALUES (102, 1, 'user2', 'password2', 'mo2@mo.de', '15315326266', 'Mortiz platz 10243 Berlin', true, 'user', '2017-06-01 12:00:00');
+INSERT INTO CGMEMBER (id, modificationCounter, Name, Password, EmailAddress, MobileNumber, CGHomeLocation, ValidationStatus, Role, CreationDate)
+VALUES (103, 1, 'user3', 'password3', 'mo3@mo.de', '15315326266', 'Mortiz platz 10243 Berlin', true, 'admin', '2017-06-01 12:00:00');
+INSERT INTO CGMEMBER (id, modificationCounter, Name, Password, EmailAddress, MobileNumber, CGHomeLocation, ValidationStatus, Role, CreationDate)
+VALUES (104, 1, 'user4', 'password4', 'mo4@mo.de', '15315326266', 'Morits platz 10243 Berlin', true, 'user', '2017-06-01 12:00:00');
 
 -- ** some offer **
 INSERT INTO RSOFFER (ID ,modificationCounter,UserID ,FromLocation , ToLocation , DepartureTime ,Delay ,NumberOfPlaces ,LuggageSpace , Status, CreationDate)

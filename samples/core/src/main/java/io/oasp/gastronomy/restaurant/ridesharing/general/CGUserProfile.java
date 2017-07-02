@@ -1,5 +1,6 @@
 package io.oasp.gastronomy.restaurant.ridesharing.general;
 
+
 import java.security.Principal;
 
 public interface CGUserProfile extends Principal {
@@ -18,4 +19,8 @@ public interface CGUserProfile extends Principal {
   String getCgHomeLocation();
 
   boolean getValidationStatus();
+
+  String getRole();
+
+  String getPassword();
 }

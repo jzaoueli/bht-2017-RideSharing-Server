@@ -32,7 +32,7 @@ public class PrincipalAccessControlProviderImpl implements PrincipalAccessContro
   public Collection<String> getAccessControlIds(CGUserProfile principal) {
 
   //TODO: replace with "return Collections.singletonList(principal.getName());"
-    return Arrays.asList(principal.getName());
+    return Arrays.asList(principal.getRole());
   }
 
 }

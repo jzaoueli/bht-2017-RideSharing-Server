@@ -24,6 +24,10 @@ public class UserDetailsClientTo extends AbstractTo implements CGUserProfile {
 
   private boolean validationStatus;
 
+  private String role;
+
+  private String password;
+
   /**
    * The constructor.
    */
@@ -64,6 +68,16 @@ public class UserDetailsClientTo extends AbstractTo implements CGUserProfile {
     return this.validationStatus;
   }
 
+  @Override
+  public String getRole() {
+    return role;
+  }
+
+  @Override
+  public String getPassword() {
+    return password;
+  }
+
   /**
    * Sets the ID.
    *
@@ -98,4 +112,11 @@ public class UserDetailsClientTo extends AbstractTo implements CGUserProfile {
     this.validationStatus = validationStatus;
   }
 
+  public void setRole(String role) {
+    this.role = role;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
 }

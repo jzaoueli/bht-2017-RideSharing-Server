@@ -1,29 +1,29 @@
 package io.oasp.gastronomy.restaurant.general.common.impl.security;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-
+import io.oasp.gastronomy.restaurant.general.common.api.Usermanagement;
+import io.oasp.gastronomy.restaurant.general.common.api.security.UserData;
 import io.oasp.gastronomy.restaurant.ridesharing.general.CGUserProfile;
+import io.oasp.module.security.common.api.accesscontrol.AccessControl;
+import io.oasp.module.security.common.api.accesscontrol.AccessControlProvider;
+import io.oasp.module.security.common.api.accesscontrol.PrincipalAccessControlProvider;
+import io.oasp.module.security.common.base.accesscontrol.AccessControlGrantedAuthority;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import io.oasp.gastronomy.restaurant.general.common.api.Usermanagement;
-import io.oasp.gastronomy.restaurant.general.common.api.security.UserData;
-import io.oasp.module.security.common.api.accesscontrol.AccessControl;
-import io.oasp.module.security.common.api.accesscontrol.AccessControlProvider;
-import io.oasp.module.security.common.api.accesscontrol.PrincipalAccessControlProvider;
-import io.oasp.module.security.common.base.accesscontrol.AccessControlGrantedAuthority;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This class represents a customized implementation of the {@link UserDetailsService} interface.<br/>
@@ -74,14 +74,17 @@ public class BaseUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         CGUserProfile principal = retrievePrincipal(username);
-        Set<GrantedAuthority> authorities = getAuthorities(principal);
+        Set<GrantedAuthority> authorities = getAuthorities(principal);//getAuthoritiesBlub(principal);
         UserDetails user;
         try {
             // amBuilder uses the InMemoryUserDetailsManager, because it is configured in BaseWebSecurityConfig
-            user = getAmBuilder().getDefaultUserDetailsService().loadUserByUsername(username);
-            UserData userData = new UserData(user.getUsername(), user.getPassword(), authorities);
-            userData.setCgUserProfile(principal);
-            return userData;
+            //user = getAmBuilder().getDefaultUserDetailsService().loadUserByUsername(username);
+            //UserData userData = new UserData(user.getUsername(), user.getPassword(), authorities);
+            //userData.setCgUserProfile(principal);
+            //return userData;
+
+            User resultUser = new User(principal.getName(), principal.getPassword(), authorities);
+            return resultUser;
         } catch (Exception e) {
             e.printStackTrace();
             UsernameNotFoundException exception = new UsernameNotFoundException("Authentication failed.", e);

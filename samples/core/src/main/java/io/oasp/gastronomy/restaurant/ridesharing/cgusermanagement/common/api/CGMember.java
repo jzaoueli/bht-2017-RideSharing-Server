@@ -17,4 +17,8 @@ public interface CGMember extends ApplicationEntity, CGUserProfile {
 
   void setValidationStatus(boolean validationStatus);
 
+  void setRole(String role);
+
+  void setPassword(String password);
+
 }

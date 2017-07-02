@@ -63,7 +63,7 @@ public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter
     public void configure(HttpSecurity http) throws Exception {
 
         String[] unsecuredResources =
-                new String[] { "/login", "/security/**", "/services/rest/login", "/services/rest/logout" };
+                new String[]{"/login", "/security/**", "/services/rest/login", "/services/rest/logout"};
 
         http
                 //
@@ -129,17 +129,26 @@ public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter
         return jsonFilter;
     }
 
-    @SuppressWarnings("javadoc")
-    @Inject
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.inMemoryAuthentication()
-                .withUser("admin").password("admin").roles("admin")
-                .and().withUser("user").password("user").roles("user");
-                /*.and().withUser("waiter").password("waiter").roles("Waiter")
-                .and().withUser("cook").password("cook").roles("Cook")
-                .and().withUser("barkeeper").password("barkeeper").roles("Barkeeper")
-                .and().withUser("chief").password("chief").roles("Chief");*/
+//    @SuppressWarnings("javadoc")
+//    @Inject
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//
+//        auth.inMemoryAuthentication()
+//                .withUser("admin").password("admin").roles("admin")
+//                .and().withUser("user").password("user").roles("user");
+//                /*.and().withUser("waiter").password("waiter").roles("Waiter")
+//                .and().withUser("cook").password("cook").roles("Cook")
+//                .and().withUser("barkeeper").password("barkeeper").roles("Barkeeper")
+//                .and().withUser("chief").password("chief").roles("Chief");*/
+//    }
+
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(this.userDetailsService);
     }
+
+
 
 }
