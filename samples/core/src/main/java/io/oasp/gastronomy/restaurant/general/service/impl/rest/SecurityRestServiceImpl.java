@@ -1,8 +1,8 @@
 package io.oasp.gastronomy.restaurant.general.service.impl.rest;
 
+import io.oasp.gastronomy.restaurant.general.common.api.Usermanagement;
 import io.oasp.gastronomy.restaurant.general.common.api.exception.NoActiveUserException;
 import io.oasp.gastronomy.restaurant.general.common.api.security.UserData;
-import io.oasp.gastronomy.restaurant.general.common.api.to.UserDetailsClientTo;
 
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
@@ -16,6 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import io.oasp.gastronomy.restaurant.ridesharing.general.CGUserProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -38,6 +39,8 @@ public class SecurityRestServiceImpl {
    * Use {@link CsrfTokenRepository} for CSRF protection.
    */
   private CsrfTokenRepository csrfTokenRepository;
+
+  private Usermanagement usermanagement;
 
   /**
    * Retrieves the CSRF token from the server session.
@@ -73,12 +76,14 @@ public class SecurityRestServiceImpl {
   @GET
   @Path("/currentuser/")
   @PermitAll
-  public UserDetailsClientTo getCurrentUser(@Context HttpServletRequest request) {
+  public CGUserProfile getCurrentUser(@Context HttpServletRequest request) {
 
     if (request.getRemoteUser() == null) {
       throw new NoActiveUserException();
     }
-    return UserData.get().toClientTo();
+    CGUserProfile currentUserData = UserData.get(usermanagement);
+
+    return currentUserData;
   }
 
   /**
@@ -88,5 +93,12 @@ public class SecurityRestServiceImpl {
   public void setCsrfTokenRepository(CsrfTokenRepository csrfTokenRepository) {
 
     this.csrfTokenRepository = csrfTokenRepository;
+  }
+
+
+  @Inject
+  public void setUsermanagement(Usermanagement usermanagement) {
+
+    this.usermanagement = usermanagement;
   }
 }

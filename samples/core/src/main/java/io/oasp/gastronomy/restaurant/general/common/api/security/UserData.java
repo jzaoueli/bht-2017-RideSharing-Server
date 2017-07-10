@@ -3,6 +3,7 @@ package io.oasp.gastronomy.restaurant.general.common.api.security;
 import java.security.Principal;
 import java.util.Collection;
 
+import io.oasp.gastronomy.restaurant.general.common.api.Usermanagement;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -62,15 +63,13 @@ public class UserData extends User implements Principal {
    */
   public UserDetailsClientTo toClientTo() {
 
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    // TODO/ call usermanagement and find userbyName
     UserDetailsClientTo clientTo = new UserDetailsClientTo();
-    clientTo.setId(100L);
-    clientTo.setName(authentication.getName());
-    // clientTo.setEmailAddress(this.cgUserProfile.getEmailAddress());
-    // clientTo.setMobileNumber(this.cgUserProfile.getMobileNumber());
-    // clientTo.setCgHomeLocation(this.cgUserProfile.getCgHomeLocation());
-    // clientTo.setValidationStatus(this.cgUserProfile.getValidationStatus());
+    clientTo.setId(this.cgUserProfile.getId());
+    clientTo.setName(this.cgUserProfile.getName());
+    clientTo.setEmailAddress(this.cgUserProfile.getEmailAddress());
+    clientTo.setMobileNumber(this.cgUserProfile.getMobileNumber());
+    clientTo.setCgHomeLocation(this.cgUserProfile.getCgHomeLocation());
+    clientTo.setValidationStatus(this.cgUserProfile.getValidationStatus());
     return clientTo;
   }
 
@@ -99,16 +98,16 @@ public class UserData extends User implements Principal {
   /**
    * @return the {@link UserData} of the user currently logged in.
    */
-  public static UserData get() {
+  public static CGUserProfile get(Usermanagement usermanagement) {
 
-    return get(SecurityContextHolder.getContext().getAuthentication());
+    return get(SecurityContextHolder.getContext().getAuthentication(), usermanagement);
   }
 
   /**
    * @param authentication is the {@link Authentication} where to retrieve the user from.
    * @return the {@link UserData} of the logged in user from the given {@link Authentication}.
    */
-  public static UserData get(Authentication authentication) {
+  public static CGUserProfile get(Authentication authentication, Usermanagement usermanagement) {
 
     if (authentication == null) {
       throw new IllegalStateException("Authentication not available!");
@@ -117,10 +116,9 @@ public class UserData extends User implements Principal {
     if (principal == null) {
       throw new IllegalStateException("Principal not available!");
     }
-    try {
-      UserData userData = new UserData(authentication.getName(), "", authentication.getAuthorities());
 
-      return userData;
+    try {
+        return usermanagement.findUserProfileByLogin(authentication.getName());
     } catch (ClassCastException e) {
       throw new IllegalStateException("Principal (" + principal + ") is not an instance of UserData!", e);
     }
