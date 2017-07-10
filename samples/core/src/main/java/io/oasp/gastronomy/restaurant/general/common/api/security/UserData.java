@@ -1,15 +1,15 @@
 package io.oasp.gastronomy.restaurant.general.common.api.security;
 
-import io.oasp.gastronomy.restaurant.general.common.api.to.UserDetailsClientTo;
-
 import java.security.Principal;
 import java.util.Collection;
 
-import io.oasp.gastronomy.restaurant.ridesharing.general.CGUserProfile;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+
+import io.oasp.gastronomy.restaurant.general.common.api.to.UserDetailsClientTo;
+import io.oasp.gastronomy.restaurant.ridesharing.general.CGUserProfile;
 
 /**
  * Container class for the profile of a user.
@@ -62,13 +62,15 @@ public class UserData extends User implements Principal {
    */
   public UserDetailsClientTo toClientTo() {
 
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    // TODO/ call usermanagement and find userbyName
     UserDetailsClientTo clientTo = new UserDetailsClientTo();
-    clientTo.setId(this.cgUserProfile.getId());
-    clientTo.setName(this.cgUserProfile.getName());
-    clientTo.setEmailAddress(this.cgUserProfile.getEmailAddress());
-    clientTo.setMobileNumber(this.cgUserProfile.getMobileNumber());
-    clientTo.setCgHomeLocation(this.cgUserProfile.getCgHomeLocation());
-    clientTo.setValidationStatus(this.cgUserProfile.getValidationStatus());
+    clientTo.setId(100L);
+    clientTo.setName(authentication.getName());
+    // clientTo.setEmailAddress(this.cgUserProfile.getEmailAddress());
+    // clientTo.setMobileNumber(this.cgUserProfile.getMobileNumber());
+    // clientTo.setCgHomeLocation(this.cgUserProfile.getCgHomeLocation());
+    // clientTo.setValidationStatus(this.cgUserProfile.getValidationStatus());
     return clientTo;
   }
 
@@ -116,7 +118,9 @@ public class UserData extends User implements Principal {
       throw new IllegalStateException("Principal not available!");
     }
     try {
-      return (UserData) principal;
+      UserData userData = new UserData(authentication.getName(), "", authentication.getAuthorities());
+
+      return userData;
     } catch (ClassCastException e) {
       throw new IllegalStateException("Principal (" + principal + ") is not an instance of UserData!", e);
     }
